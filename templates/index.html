@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recognition and Optimization of Weight Lifting Movements</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <!-- Title Bar -->
+    <div class="title-bar">
+        <h2>Recognition and Optimization of Weight Lifting Movements</h2>
+    </div>
+
+    <!-- Workout Section -->
+    <div class="workout-section">
+        {% set workouts = ['Biceps curl Workout', 'Squat Workout', 'Overhead press Workout', 'Deadlift Workout', 'Barbell Row Workout'] %}
+        {% for workout in workouts %}
+        <div class="workout-card">
+            <img src="{{ url_for('static', filename='dumbbell.png') }}" alt="Workout Icon" class="icon">
+            <div class="workout-details">
+                {% if workout == "Biceps curl Workout" %}
+                    <h3><a href="#" onclick="openModal()">Biceps curl Workout</a></h3>
+                {% else %}
+                    <h3>{{ workout }}</h3>
+                {% endif %}
+                <div class="button-group">
+                    <button onclick="startWorkout('{{ loop.index0 }}')">Start workout</button>
+                    <button onclick="stopWorkout('{{ loop.index0 }}')">Stop workout</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Modal Dialog -->
+    <div id="workoutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>💪 Biceps curl Workout</h2>
+            <p>To ensure proper form and reduce the risk of injury during arm exercises:</p>
+            <p> ✅ Keep your elbow angle between 40° and 165° at all times.</p>
+            <p> 🔁 This range helps maintain tension on the muscles while protecting your joints.</p>
+            <p> 🚫 Avoid fully locking out (180°) or collapsing below 40°, as these positions can strain your elbows or reduce exercise effectiveness.</p>
+            <p> 🎯 Focus on controlled, full-range movements within the safe angle zone.</p>
+            <video width="500" height="360" controls>
+                <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
+              </video>
+              
+        </div>
+    </div>
+
+    <script>
+        function startWorkout(id) {
+            fetch(`/start?id=${id}`);
+        }
+
+        function stopWorkout(id) {
+            fetch(`/stop?id=${id}`);
+        }
+
+        function openModal() {
+            document.getElementById("workoutModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("workoutModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("workoutModal");
+            if (event.target === modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+
+</body>
+</html>

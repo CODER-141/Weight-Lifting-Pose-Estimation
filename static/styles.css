@@ -1,0 +1,175 @@
+/* General Body Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    background-image: url('../static/background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Title Bar */
+.title-bar {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+}
+
+.title-bar h2 {
+    margin: 0;
+    color: white;
+    font-size: 28px;
+}
+
+/* Workout Section */
+.workout-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Individual Workout Card */
+.workout-card {
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+/* Workout Icon */
+.icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding: 10px;
+    margin-right: 20px;
+    border: 2px solid white;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Workout Details */
+.workout-details {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
+.workout-details h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+}
+
+.workout-details h3 a {
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.workout-details h3 a:hover {
+    color: #ccc;
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.button-group button {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.button-group button:hover {
+    background: white;
+    color: black;
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 30px;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 500px;
+    color: #333;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content input[type="file"] {
+    margin-top: 10px;
+    display: block;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .workout-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .workout-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .button-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .button-group button {
+        width: 100%;
+    }
+
+    .title-bar {
+        width: 95%;
+    }
+}
