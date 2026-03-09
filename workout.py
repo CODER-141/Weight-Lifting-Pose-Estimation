@@ -53,7 +53,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                             (10, 460), cv2.FONT_HERSHEY_SIMPLEX, 1,
                             (0, 255, 255), 2, cv2.LINE_AA)
 
-            cv2.imshow('', image)
+            cv2.imshow('Biceps curl Workout', image)
             key = cv2.waitKey(1)
 
             if 48 <= key <= 57:
@@ -132,7 +132,7 @@ with mp_pose.Pose(min_detection_confidence=0.5, min_tracking_confidence=0.5) as 
                 mp_drawing.DrawingSpec(color=(245, 66, 230), thickness=2, circle_radius=2)
             )
 
-        cv2.imshow('', image)
+        cv2.imshow('Biceps curl Workout', image)
 
         if cv2.waitKey(10) & 0xFF == ord('q'):
             break

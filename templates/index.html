@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Recognition and Optimization of Weight Lifting Movements</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
+
 <body>
 
     <!-- Title Bar -->
@@ -15,16 +17,16 @@
 
     <!-- Workout Section -->
     <div class="workout-section">
-        {% set workouts = ['Biceps curl Workout', 'Squat Workout', 'Overhead press Workout', 'Deadlift Workout', 'Barbell Row Workout'] %}
+        {% set workouts = ['Biceps curl Workout', 'Squat Workout', 'Overhead press Workout', 'Deadlift Workout',
+        'Barbell Row Workout'] %}
+        {% set modal_ids = ['bicepsModal', 'squatModal', 'overheadModal', 'deadliftModal', 'barbellModal'] %}
         {% for workout in workouts %}
         <div class="workout-card">
             <img src="{{ url_for('static', filename='dumbbell.png') }}" alt="Workout Icon" class="icon">
             <div class="workout-details">
-                {% if workout == "Biceps curl Workout" %}
-                    <h3><a href="#" onclick="openModal()">Biceps curl Workout</a></h3>
-                {% else %}
-                    <h3>{{ workout }}</h3>
-                {% endif %}
+                <h3>
+                    <a href="#" onclick="openModal('{{ modal_ids[loop.index0] }}')">{{ workout }}</a>
+                </h3>
                 <div class="button-group">
                     <button onclick="startWorkout('{{ loop.index0 }}')">Start workout</button>
                     <button onclick="stopWorkout('{{ loop.index0 }}')">Stop workout</button>
@@ -34,20 +36,97 @@
         {% endfor %}
     </div>
 
-    <!-- Modal Dialog -->
-    <div id="workoutModal" class="modal">
+    <!-- ===== MODAL 1: Biceps Curl ===== -->
+    <div id="bicepsModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>💪 Biceps curl Workout</h2>
+            <span class="close" onclick="closeModal('bicepsModal')">&times;</span>
+            <h2>💪 Biceps Curl Workout</h2>
+            <p><strong>Target Muscles:</strong> Biceps Brachii, Brachialis</p>
             <p>To ensure proper form and reduce the risk of injury during arm exercises:</p>
-            <p> ✅ Keep your elbow angle between 40° and 165° at all times.</p>
-            <p> 🔁 This range helps maintain tension on the muscles while protecting your joints.</p>
-            <p> 🚫 Avoid fully locking out (180°) or collapsing below 40°, as these positions can strain your elbows or reduce exercise effectiveness.</p>
-            <p> 🎯 Focus on controlled, full-range movements within the safe angle zone.</p>
-            <video width="500" height="360" controls>
+            <p>✅ Keep your <strong>elbow angle between 40° and 165°</strong> at all times.</p>
+            <p>🔁 This range helps maintain tension on the muscles while protecting your joints.</p>
+            <p>🚫 Avoid fully locking out (180°) or collapsing below 40°, as these positions can strain your elbows.</p>
+            <p>📌 Keep your <strong>elbows close to your body</strong> — don't let them swing forward.</p>
+            <p>🎯 Focus on <strong>slow, controlled movements</strong> within the safe angle zone.</p>
+            <video width="100%" height="auto" controls>
                 <source src="{{ url_for('static', filename='video.mp4') }}" type="video/mp4">
-              </video>
-              
+            </video>
+        </div>
+    </div>
+
+    <!-- ===== MODAL 2: Squat ===== -->
+    <div id="squatModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('squatModal')">&times;</span>
+            <h2>🏋️ Squat Workout</h2>
+            <p><strong>Target Muscles:</strong> Quadriceps, Glutes, Hamstrings, Core</p>
+            <p>To ensure proper form and reduce the risk of knee and back injuries:</p>
+            <p>✅ Keep your <strong>knee angle between 70° and 160°</strong> during the movement.</p>
+            <p>📌 Stand with feet <strong>shoulder-width apart</strong>, toes slightly pointed outward.</p>
+            <p>🔁 Lower your body by bending <strong>knees and hips together</strong> — not just the knees.</p>
+            <p>🚫 Avoid letting your knees <strong>cave inward</strong> or go past your toes excessively.</p>
+            <p>⬇️ Squat until your thighs are <strong>parallel to the floor</strong> (knee angle ~90°).</p>
+            <p>🎯 Keep your <strong>chest up and back straight</strong> throughout the movement.</p>
+            <video width="100%" height="auto" controls>
+                <source src="{{ url_for('static', filename='squat workout.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- ===== MODAL 3: Overhead Press ===== -->
+    <div id="overheadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('overheadModal')">&times;</span>
+            <h2>🙌 Overhead Press Workout</h2>
+            <p><strong>Target Muscles:</strong> Deltoids (Shoulders), Triceps, Upper Chest</p>
+            <p>To ensure proper form and avoid shoulder injuries:</p>
+            <p>✅ Keep your <strong>elbow angle between 70° and 180°</strong> during the press.</p>
+            <p>📌 Start with the bar or dumbbells at <strong>shoulder height</strong>, elbows slightly in front.</p>
+            <p>🔁 Press the weight <strong>straight up over your head</strong> until arms are fully extended.</p>
+            <p>🚫 Avoid <strong>arching your lower back</strong> — keep your core tight and engaged.</p>
+            <p>⬆️ At the top, your <strong>ears should be in front of your arms</strong>.</p>
+            <p>🎯 Lower the weight slowly and in a <strong>controlled manner</strong> back to shoulder level.</p>
+            <video width="100%" height="auto" controls>
+                <source src="{{ url_for('static', filename='overhead press workout.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- ===== MODAL 4: Deadlift ===== -->
+    <div id="deadliftModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deadliftModal')">&times;</span>
+            <h2>🏗️ Deadlift Workout</h2>
+            <p><strong>Target Muscles:</strong> Hamstrings, Glutes, Lower Back, Traps, Core</p>
+            <p>The deadlift is a powerful full-body movement. Proper form is critical to avoid injury:</p>
+            <p>✅ Keep your <strong>back flat (neutral spine)</strong> throughout the entire lift.</p>
+            <p>📌 Stand with feet <strong>hip-width apart</strong>, bar directly over mid-foot.</p>
+            <p>🔁 Hinge at the <strong>hips first</strong>, then bend the knees — not the other way around.</p>
+            <p>🚫 Never <strong>round your lower back</strong> — this is the most common cause of injury.</p>
+            <p>💪 Drive through your <strong>heels</strong> and push the floor away as you lift.</p>
+            <p>🎯 Keep the bar <strong>close to your body</strong> — it should almost drag up your shins.</p>
+            <video width="100%" height="auto" controls>
+                <source src="{{ url_for('static', filename='deadlift workout.mp4') }}" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- ===== MODAL 5: Barbell Row ===== -->
+    <div id="barbellModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('barbellModal')">&times;</span>
+            <h2>🚣 Barbell Row Workout</h2>
+            <p><strong>Target Muscles:</strong> Lats, Rhomboids, Traps, Rear Deltoids, Biceps</p>
+            <p>To build a strong back safely with proper rowing technique:</p>
+            <p>✅ Keep your <strong>elbow angle between 50° and 160°</strong> during the row.</p>
+            <p>📌 Hinge forward at the hips, keep your <strong>back flat and parallel to the floor</strong>.</p>
+            <p>🔁 Pull the bar into your <strong>lower chest / upper abdomen</strong>, not your neck.</p>
+            <p>🚫 Avoid <strong>using your lower back</strong> to jerk the weight — use your back muscles.</p>
+            <p>⬇️ Lower the bar in a <strong>slow, controlled motion</strong> to full arm extension.</p>
+            <p>🎯 Squeeze your <strong>shoulder blades together</strong> at the top of each rep.</p>
+            <video width="100%" height="auto" controls>
+                <source src="{{ url_for('static', filename='barbell row workout.mp4') }}" type="video/mp4">
+            </video>
         </div>
     </div>
 
@@ -60,21 +139,25 @@
             fetch(`/stop?id=${id}`);
         }
 
-        function openModal() {
-            document.getElementById("workoutModal").style.display = "block";
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
         }
 
-        function closeModal() {
-            document.getElementById("workoutModal").style.display = "none";
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
         }
 
-        window.onclick = function(event) {
-            const modal = document.getElementById("workoutModal");
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
+        // Close modal when clicking outside it
+        window.onclick = function (event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(function (modal) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
         };
     </script>
 
 </body>
+
 </html>
